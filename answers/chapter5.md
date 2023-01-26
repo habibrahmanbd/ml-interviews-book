@@ -1,7 +1,7 @@
-### 5.1.1 Vectors
+## 5.1.1 Vectors
 If some characters seem to be missing, it's because MathJax is not loaded correctly. Refreshing the page should fix it.
 
-1. Dot product
+1. Inner Product / Dot product
 
     i. **[E] What’s the geometric interpretation of the dot product of two vectors?**
     
@@ -25,19 +25,129 @@ If some characters seem to be missing, it's because MathJax is not loaded correc
     Normalize the vector "a" to create a unit vector "a_hat" by dividing it by its magnitude (length) ||a||.
     
   $a_{hat} = \frac{a} {||a||}$
-
+  
+  
     Use the unit vector "a_hat" as the vector "b" of unit length such that the dot product of a and b is maximum.
-The dot product of a and a_hat will be maximum because a_hat is a unit vector, and its magnitude is 1, which means that it is already of unit length. And since the dot product is defined as the product of the magnitudes of the two vectors multiplied by the cosine of the angle between them, when one of the vectors is a unit vector, the dot product will be equal to the product of the magnitudes of the two vectors. Since the magnitude of a_hat is 1 and the dot product of a and a_hat is a.a_hat, it will be equal to the magnitude of a and thus maximum.
+    
+    The dot product of a and a_hat will be maximum because a_hat is a unit vector, and its magnitude is 1, which means that it is already of unit length. And since the dot product is defined as the product of the magnitudes of the two vectors multiplied by the cosine of the angle between them, when one of the vectors is a unit vector, the dot product will be equal to the product of the magnitudes of the two vectors. Since the magnitude of a_hat is 1 and the dot product of a and a_hat is a.a_hat, it will be equal to the magnitude of a and thus maximum.
 
 
 2. #### Outer product
+    i. [E] Given two vectors and . Calculate the outer product ?
+    
+    **Answer:**
+        The outer product of two vectors a and b is a matrix that is formed by taking the product of each element of one vector with every element of the other vector. The outer product of two vectors a and b is denoted by a x b^T, where T denotes the transpose.
 
-[E] Given two vectors and . Calculate the outer product ?
-[M] Give an example of how the outer product can be useful in ML.
-[E] What does it mean for two vectors to be linearly independent?
 
-[M] Given two sets of vectors and . How do you check that they share the same basis?
-[M] Given vectors, each of dimensions. What is the dimension of their span?
-Norms and metrics
-[E] What's a norm? What is ?
-[M] How do norm and metric differ? Given a norm, make a metric. Given a metric, can we make a norm?
+    
+    ii. [M] Give an example of how the outer product can be useful in ML.
+    
+    **Answer:**
+    One example of how the outer product can be useful in machine learning is in Principal Component Analysis (PCA). PCA is a technique used to reduce the dimensionality of a dataset by identifying the directions of maximum variance in the data and projecting the data onto those directions. The outer product of two vectors can be used to calculate the projection of one vector onto another.
+
+    In PCA, the data is represented as a matrix X where each row is a datapoint and each column is a feature. The goal of PCA is to find a new set of coordinates for the data, where the new coordinates are linear combinations of the original features. These new coordinates, or principal components, are chosen such that they explain the most variance in the data.
+
+    The first step in PCA is to calculate the covariance matrix of the data, which is the outer product of the data matrix with its transpose. This outer product can be represented by X.X^T.
+
+    ```python
+    import numpy as np
+
+    # Define data matrix X
+    X = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
+
+    # Calculate the covariance matrix
+    cov_matrix = np.cov(X.T)
+
+    print("Covariance matrix: \n", cov_matrix)
+    
+    # Find the eigenvalues and eigenvectors of the covariance matrix
+    eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+
+    print("Eigenvalues: ", eigenvalues)
+    print("Eigenvectors: \n", eigenvectors)
+    ```
+    The eigenvectors of the covariance matrix are the principal components and the eigenvalues are the variances along those directions. The eigenvectors are the directions of maximum variance in the data. By projecting the data onto these directions, we can reduce the dimensionality of the data while still preserving most of the variance.
+
+    In this way, the outer product is used to calculate the covariance matrix, which plays an important role in PCA and helps to reduce the dimensionality of the data.
+
+
+### Inner and Outer product:
+```python
+import numpy as np
+
+# Define two vectors
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+# Calculate the inner product (dot product) of the two vectors
+inner_product = np.dot(a, b)
+
+# Calculate the outer product of the two vectors
+outer_product = np.outer(a, b)
+
+print("Inner Product of a and b: ", inner_product)
+print("Outer Product of a and b: \n", outer_product)
+
+```
+3. [E] What does it mean for two vectors to be linearly independent?
+
+    **Answer:**
+    Two vectors are considered to be linearly independent if neither of them can be represented as a linear combination of the other. In other words, if the only way to express one vector as a linear combination of the other is with a coefficient of 0, then the two vectors are linearly independent.
+
+    For example, let's consider two vectors a and b:
+    ```
+    a = [1, 2, 3]
+    b = [4, 5, 6]
+    ```
+
+    These two vectors are linearly independent because neither of them can be expressed as a linear combination of the other. We can't find any scalar coefficients (x,y) such that $a = xb + yc$ for any vector c.
+
+    On the other hand, if two vectors can be expressed as a linear combination of each other, then they are considered to be linearly dependent. For example,
+    ```
+    a = [1, 2, 3]
+    b = [2, 4, 6]
+    ```
+    These two vectors are linearly dependent, because the vector b can be expressed as a linear combination of the vector a, $b = 2a$.
+
+    Linearly independent vectors have the property that they span a subspace of a vector space that has a dimension equal to the number of vectors that span it, while linearly dependent vectors can be linearly represented by a combination of other vectors and so they do not add new information to the space.
+
+4. [M] Given two sets of vectors $$A = {a_1, a_2, a_3, ..., a_n}$$ and $$B = {b_1, b_2, b_3, ... , b_m}$$. How do you check that they share the same basis?
+
+    **Answer:**
+        To check mathematically that two sets of vectors, A and B, share the same basis, we can use the following methods:
+            - Check if the vectors in A can be written as a linear combination of the vectors in B, and vice versa. If this is possible, then A and B share the same basis.
+
+6. [M] Given $$n$$ vectors, each of $$d$$ dimensions. What is the dimension of their span?
+
+    **Answer:**
+        Given n vectors, each of d dimensions, the dimension of their span is the rank of the matrix formed by the concatenation of these vectors. The rank of a matrix is defined as the dimension of the vector space spanned by its columns. So, the dimension of the span of these n vectors is equal to the rank of the matrix formed by these vectors.
+
+    The rank of a matrix can be found using linear algebra techniques like Gaussian elimination, it's also the number of non-zero rows after row-reducing the matrix.
+
+    The dimension of the span of these n vectors can range from 0 to d. If none of the vectors in the set is linearly independent, the dimension of the span will be 0. If all the vectors in the set are linearly independent, the dimension of the span will be equal to d. If some of the vectors in the set are linearly dependent, the dimension of the span will be less than d.
+    
+8. Norms and metrics
+	1. [E] What's a norm? What is $$L_0, L_1, L_2, L_{norm}$$?
+	**Answer:**
+    A norm is a function that assigns a scalar value to a vector, measuring the "size" or "magnitude" of the vector. It is a mathematical way to generalize the concept of length or distance in a vector space. The most common norm is the Euclidean norm, also known as the L2 norm.
+    
+    $L_0$, $L_1$, $L_2$, and $L_{norm}$ are different types of norms, also known as the p-norms, and are defined as follows:
+        - $L_0$ norm: It is also called the "zero norm", it counts the number of non-zero elements in a vector, mathematically defined as:
+        
+        - $L_1$ norm: It's defined as the sum of the absolute values of the elements in a vector. It's also referred to as the "Taxicab / Manhattan" norm. It can be written as
+
+        - $L_2$ norm: It's defined as the square root of the sum of the squares of the elements in a vector. It's also referred to as the "Euclidean" norm or the "2-norm". It can be written as
+        
+        - $L_{norm}$: It's defined as the p-th root of the sum of the p-th power of the absolute values of the elements in a vector. It's a general form of the above norms. It can be written as
+        - 
+
+
+	3. [M] How do norm and metric differ? Given a norm, make a metric. Given a metric, can we make a norm?
+
+    **Answer:**
+    
+    A norm is a function that assigns a scalar value to a vector, usually denoted as ||x||, and it must satisfy certain properties such as non-negativity, identity, homogeneity, and the triangle inequality. A metric, on the other hand, is a function that assigns a scalar value to a pair of vectors, usually denoted as d(x, y), and it must also satisfy certain properties such as non-negativity, identity, symmetry and the triangle inequality.
+
+    A norm can be used to define a metric by taking the square of the norm, e.g. d(x, y) = ||x - y||^2. This will satisfy all the properties of a metric and it's called Euclidean metric.
+
+    Given a metric, it may not be possible to define a norm, as a metric does not have the homogeneity property, which is required for a norm.
