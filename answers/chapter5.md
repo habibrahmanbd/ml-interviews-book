@@ -65,21 +65,20 @@ If some characters seem to be missing, it's because MathJax is not loaded correc
 
 ### Inner and Outer product:
 ```python
-import numpy as np
-
-# Define two vectors
-a = np.array([1, 2, 3])
-b = np.array([4, 5, 6])
-
-# Calculate the inner product (dot product) of the two vectors
-inner_product = np.dot(a, b)
-
-# Calculate the outer product of the two vectors
-outer_product = np.outer(a, b)
-
-print("Inner Product of a and b: ", inner_product)
-print("Outer Product of a and b: \n", outer_product)
-
+  1 import numpy as np
+  2
+  3 # Define two vectors
+  4 a = np.array([3,2,1])
+  5 b = np.array([-1,0,1])
+  6
+  7 # Calculate the inner product (dot product) of the two vectors
+  8 inner_product = np.dot(a, b)
+  9
+ 10 # Calculate the outer product of the two vectors
+ 11 outer_product = np.outer(a, b)
+ 12
+ 13 print("Inner Product of a and b: ", inner_product)
+ 14 print("Outer Product of a and b: \n", outer_product)
 ```
 3. [E] What does it mean for two vectors to be linearly independent?
 
