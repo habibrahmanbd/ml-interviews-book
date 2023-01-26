@@ -19,26 +19,18 @@ If some characters seem to be missing, it's because MathJax is not loaded correc
     ii. **[E] Given a vector , find vector of unit length such that the dot product of and is maximum.**
     
     **Answer:**
-    
-    Given a vector "a" , in order to find a vector "b" of unit length such that the dot product of a and b is maximum, we can take the following steps:
-
-    Normalize the vector "a" to create a unit vector "a_hat" by dividing it by its magnitude (length) ||a||.
-    
-  $a_{hat} = \frac{a} {||a||}$
-  
-  
-    Use the unit vector "a_hat" as the vector "b" of unit length such that the dot product of a and b is maximum.
-    
-    The dot product of a and a_hat will be maximum because a_hat is a unit vector, and its magnitude is 1, which means that it is already of unit length. And since the dot product is defined as the product of the magnitudes of the two vectors multiplied by the cosine of the angle between them, when one of the vectors is a unit vector, the dot product will be equal to the product of the magnitudes of the two vectors. Since the magnitude of a_hat is 1 and the dot product of a and a_hat is a.a_hat, it will be equal to the magnitude of a and thus maximum.
+    Given a non-zero vector u, the vector v of unit length such that the dot product of u and v is maximum is given by:
+	   $\frac{u}{||u||}$
+	   
+	where ||u|| is the length of vector u. This is because the dot product of two vectors is maximized when the two vectors are pointing in the same direction. Dividing u by its length will give a vector in the same direction with unit length, and therefore the dot product with this vector will be the maximum possible value which is equal to the length of u.
 
 
 2. #### Outer product
-    i. [E] Given two vectors and . Calculate the outer product ?
-    
+    1. [E] Given two vectors $$a = [3, 2, 1]$$ and  $$b = [-1, 0, 1]$$. Calculate the outer product $$a^Tb$$?    
     **Answer:**
-        The outer product of two vectors a and b is a matrix that is formed by taking the product of each element of one vector with every element of the other vector. The outer product of two vectors a and b is denoted by a x b^T, where T denotes the transpose.
-
-
+       The outer product of two vectors a and b is calculated as the matrix product of a transpose of a with b. In this case, the outer product of vectors a and b is:
+       
+       
     
     ii. [M] Give an example of how the outer product can be useful in ML.
     
