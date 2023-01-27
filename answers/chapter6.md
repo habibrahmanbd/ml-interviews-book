@@ -228,8 +228,27 @@
 		# Normalize x
 		x = x / np.linalg.norm(x)
 	    return x
+	
+	def find_min_x_SGD(A, max_iterations=1000, learning_rate=0.01, batch_size=64):
+	    # Initialize x with random values
+	    x = np.random.rand(A.shape[0])
+	    x = x / np.linalg.norm(x)
+
+	    for i in range(max_iterations):
+		# Sample a random mini-batch of rows from A
+		indices = np.random.randint(A.shape[0], size=batch_size)
+		mini_batch = A[indices]
+
+		# Compute the gradient
+		grad = 2 * np.dot(mini_batch.T, np.dot(mini_batch, x))
+		# Update x
+		x = x - learning_rate * grad
+		# Normalize x
+		x = x / np.linalg.norm(x)
+	    return x
 	A = np.random.rand(1000, 1000)
 	x = find_min_x(A)
+	x = find_min_x_SGD(A)
 	```
 
 
